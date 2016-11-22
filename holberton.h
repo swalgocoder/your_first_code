@@ -12,7 +12,7 @@ typedef struct data_types
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-char *(*my_valid_type(char s))(va_list);
+char *(*my_data_type(char s))(va_list);
 
 /* printf_helpers */
 char *my_char(va_list my_c);
