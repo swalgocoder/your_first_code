@@ -27,3 +27,35 @@ char *my_string(va_list *s)
 	string = va_arg(s, char *);
 	return (string);
 }
+
+#include "holberton.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+/**
+ * my_valid_type - ID the type specifier passed by printf with a valid_type
+ * @s: Type to check given as char
+ * Return: pointer function of char type, valid_type matched
+ */
+char *(*my_valid_type(char s))(va_list)
+{
+	int i;
+	my_types print_types[] = {
+		{"c", found_char},
+		{"s", found_string},
+		{NULL, NULL}
+	};
+
+	for (i = 0; print_types[i].my_char; i++)
+	{
+
+		if (s == *print_types[i].my_char)
+		{
+			return (print_types[i].f);
+		}
+	}
+
+	/* handle NULL case */
+	return (NULL);
+}
