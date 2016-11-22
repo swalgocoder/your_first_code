@@ -10,38 +10,41 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, blen, hlen;
+	int i, buffer_len, buffer2_len;
 	va_list ptr_arg;
-	char *buffer, *holder;
-	char *(*chosenone)(va_list);
+	char *buffer, *buffer_2;
+	char *(*switch)(va_list);
 
 	buffer = malloc(BUFSIZE * sizeof(char));
 	va_start(ptr_arg, format);
-	for (i = blen = 0; format && format[i]; i++)
+	for (i = buffer_len = 0; format && format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
-			chosenone = my_valid_type(format[i + 1]);
-			holder = chosenone(argp);
-			hlen = _strlen(holder);
+			switch = my_data_type(format[i + 1]);
+			buffer_2 = switch(ptr_arg);
+			buffer2_len = _strlen(buffer_2);
 
-			if (hlen + blen > BUFSIZE)
+			if (buffer_len + buffer2_len > BUFSIZE)
 			{
-				_puts(buffer, blen);
-				_memcpy(buffer, holder, hlen, 0);
-				blen = hlen;
+				_puts(buffer, buffer_len);
+				_memcpy(buffer, buffer2, buffer2_len, 0);
+				buffer_len = buffer2_len;
 			}
 			else
-				_memcpy(buffer, holder, hlen, blen), blen += hlen;
+			{
+				_memcpy(buffer, buffer2, buffer2_len, buffer_len);
+				buffer_len += buffer2_len;
+			}
 			i++;
 		}
 		else
 		{
-			buffer[blen] = format[i];
-			blen++;
+			buffer[buffer_len] = format[i];
+			buffer_len++;
 		}
 	}
 	va_end(ptr_arg);
-	_puts(buffer, blen);
-	return (blen);
+	_puts(buffer, buffer_len);
+	return (buffer_len);
 }
