@@ -98,6 +98,12 @@ char *my_percent(void)
 //the above part to be deleted, for reference only///
 char *my_int(va_list ptr_arg1)
 {
+	int n;
+	char *my_string;
+
+	n = va_arg(ptr_arg1, int);
+
+	my_string = malloc(50 * sizeof(char));
   
 size_t strlen(const char *string) 
 {
@@ -143,6 +149,6 @@ char *itoa(int n, char *s)
 	return strrev(s);
 }
 
-char *itoa(n, char *s); 
+char *itoa(n, my_string); 
 
 }
