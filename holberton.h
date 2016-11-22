@@ -16,7 +16,7 @@ char *(*my_valid_type(char s))(va_list);
 
 /* printf_helpers */
 char *my_char(va_list my_c);
-char *my_string(va_list *s);
+char *my_string(va_list *str);
 /*others  */
 int my_atoi(char *s);
 char *_memcpy(char *dest, char *src, unsigned int n, unsigned int bufferlen);
