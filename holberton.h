@@ -6,7 +6,7 @@
 
 typedef struct data_types
 {
-	char *my_char;
+	char *check_char;
 	char *(*f)();
 } my_types;
 
